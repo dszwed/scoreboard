@@ -1,0 +1,28 @@
+{
+  "name": "scoreboard",
+  "private": true,
+  "scripts": {
+    "dev": "NODE_OPTIONS='--inspect' next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "build-db-models": "npx prisma db pull"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.9.1",
+    "jspdf": "^2.5.0",
+    "next": "12.0.8",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "serverless-mysql": "^1.5.4",
+    "swr": "^1.1.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "eslint": "8.6.0",
+    "eslint-config-next": "12.0.8",
+    "postcss": "^8.4.5",
+    "prisma": "^3.9.1",
+    "tailwindcss": "^3.0.14"
+  }
+}
