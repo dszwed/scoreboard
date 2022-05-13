@@ -16,7 +16,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-          <Link href='/game/create'>New game</Link>
+          <a href='/game/create' className='btn btn-primary'>New game</a>
       </main>
     </div>
   )

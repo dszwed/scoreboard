@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import {useRouter} from "next/router";
 import {teams} from "../../data";
+import FormControllerSelect from '../../components/formControllerSelect';
 
 import styles from '../../styles/Home.module.css'
 
@@ -22,6 +23,12 @@ export default function Create() {
         await router.push(`/game/${event.target.homeTeam.value}/${event.target.awayTeam.value}`);
     }
 
+    const OPTIONS = teams.map((team, index) => {
+        return {
+            value: team.id,
+            label: team.name
+        };
+    })
 
     return (
         <div className={styles.container}>
@@ -32,24 +39,14 @@ export default function Create() {
             </Head>
 
             <main className={styles.main}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} >
                     <fieldset>
-                        Home team
-                        <select name="homeTeam">
-                            {teams.map((team, index) => {
-                                return <option value={team.id}>{team.name}</option>
-                            })}
-                        </select>
+                        <FormControllerSelect label="Home team" name="homeTeam" options={OPTIONS} />
                     </fieldset>
                     <fieldset>
-                        Away team
-                        <select name="awayTeam">
-                            {teams.map((team, index) => {
-                                return <option value={team.id}>{team.name}</option>
-                            })}
-                        </select>
+                        <FormControllerSelect label="Away team" name="awayTeam" options={OPTIONS} />
                     </fieldset>
-                    <input type="submit" />
+                    <input className="btn btn-primary" type="submit" />
                 </form>
             </main>
         </div>
