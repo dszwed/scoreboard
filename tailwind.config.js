@@ -4,11 +4,6 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      gridTemplateColumns: {
-        'scoreboard': '1fr 200px 1fr',
-      }
-    },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }

@@ -1,6 +1,7 @@
 import {Component} from "react";
 import PlayerStatsPanel from "./playerStatsPanel";
 import styles from "../styles/TeamScoreboard.module.css";
+import homestyles from "../styles/Home.module.css";
 
 class TeamScoreboard extends Component {
     constructor(props) {
@@ -12,17 +13,22 @@ class TeamScoreboard extends Component {
         this.handleUpdateScoreBy = this.handleUpdateScoreBy.bind(this);
     }
 
-    handleUpdateScoreBy(by) {
+    handleUpdateScoreBy() {
+        let score = 0;
+        this.props.players.forEach(function(player){
+            score += player.score;
+        })
+
         this.setState({
-            score: this.state.score += by
+            score: score
         });
     }
 
     render() {
         return (
-            <div>
-                <div className={styles.board}>{this.state.score}</div>
-                <PlayerStatsPanel players={this.props.players} onUpdateScore={this.handleUpdateScoreBy} />
+            <div className="">
+                <div className={styles.board}>{this.props.teamName}: {this.state.score}</div>
+                <PlayerStatsPanel players={this.props.players} onScore={this.handleUpdateScoreBy} />
             </div>
         )
     }

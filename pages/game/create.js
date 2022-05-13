@@ -1,16 +1,11 @@
 import Head from 'next/head'
-import useSwr from 'swr'
 import {useRouter} from "next/router";
-
-const fetcher = (url) => fetch(url).then((res) => res.json())
+import {teams} from "../../data";
 
 import styles from '../../styles/Home.module.css'
 
 export default function Create() {
-    const {data, error} = useSwr(
-        '/api/teams',
-        fetcher
-    )
+
 
     const router = useRouter();
 
@@ -24,30 +19,8 @@ export default function Create() {
             awayTeamID: event.target.awayTeam.value,
         }
 
-        const JSONdata = JSON.stringify(data)
-
-        // Send the form data to our API and get a response.
-        const response = await fetch('/api/game', {
-            // Body of the request is the JSON data we created above.
-            body: JSONdata,
-
-            // Tell the server we're sending JSON.
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            // The method is POST because we are sending data.
-            method: 'POST',
-        })
-
-        // Get the response data from server as JSON.
-        // If server returns the name submitted, that means the form works.
-        const result = await response.json();
-        console.dir(result);
-        await router.push(`/game/${result.id}`);
+        await router.push(`/game/${event.target.homeTeam.value}/${event.target.awayTeam.value}`);
     }
-
-    if (error) return <div>Failed to load teams</div>
-    if (!data) return <div>Loading...</div>
 
 
     return (
@@ -63,7 +36,7 @@ export default function Create() {
                     <fieldset>
                         Home team
                         <select name="homeTeam">
-                            {data.map((team, index) => {
+                            {teams.map((team, index) => {
                                 return <option value={team.id}>{team.name}</option>
                             })}
                         </select>
@@ -71,7 +44,7 @@ export default function Create() {
                     <fieldset>
                         Away team
                         <select name="awayTeam">
-                            {data.map((team, index) => {
+                            {teams.map((team, index) => {
                                 return <option value={team.id}>{team.name}</option>
                             })}
                         </select>

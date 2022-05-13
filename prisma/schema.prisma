@@ -8,33 +8,22 @@ datasource db {
 }
 
 model game {
-  id                           BigInt @id @default(autoincrement()) @db.UnsignedBigInt
-  home_team_id                 BigInt @db.UnsignedBigInt
-  away_team_id                 BigInt @db.UnsignedBigInt
-  home_team_score              Int    @db.UnsignedInt
-  away_team_score              Int    @db.UnsignedInt
-  team_game_away_team_idToteam team   @relation("game_away_team_idToteam", fields: [away_team_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "game_ibfk_2")
-  team_game_home_team_idToteam team   @relation("game_home_team_idToteam", fields: [home_team_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "game_ibfk_1")
+  id              Int      @id @default(autoincrement()) @db.UnsignedInt
+  away_team_score Int?     @db.UnsignedInt
+  home_team_score Int?     @db.UnsignedInt
+  created_at      DateTime @default(now()) @db.DateTime(0)
+  home_team_id    Int      @db.UnsignedInt
+  away_team_id    Int      @db.UnsignedInt
+  away_team       team     @relation("away_team", fields: [away_team_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_game_team1")
+  home_team       team     @relation("home_team", fields: [home_team_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_game_team")
 
-  @@index([away_team_id], map: "away_team_id")
-  @@index([home_team_id], map: "home_team_id")
-}
-
-model player {
-  id            BigInt @id @default(autoincrement()) @db.UnsignedBigInt
-  team_id       BigInt @db.UnsignedBigInt
-  first_name    String @db.VarChar(32)
-  last_name     String @db.VarChar(32)
-  jersey_number Int    @db.UnsignedInt
-  team          team   @relation(fields: [team_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "player_ibfk_1")
-
-  @@index([team_id], map: "team_id")
+  @@index([away_team_id], map: "fk_game_team1_idx")
+  @@index([home_team_id], map: "fk_game_team_idx")
 }
 
 model team {
-  id                           BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
-  name                         String   @db.VarChar(64)
-  game_game_away_team_idToteam game[]   @relation("game_away_team_idToteam")
-  game_game_home_team_idToteam game[]   @relation("game_home_team_idToteam")
-  player                       player[]
+  id         Int    @id @default(autoincrement()) @db.UnsignedInt
+  name       String @db.VarChar(45)
+  away_teams game[] @relation("away_team")
+  home_teams game[] @relation("home_team")
 }

@@ -1,16 +1,9 @@
-import Stats from "./stats";
-import stats from "./stats";
-
 class Player {
-    constructor(id, name, number, stats = []) {
+    constructor(id, name, number) {
         this.id = id;
         this.name = name;
         this.number = number;
-        this.stats = new Stats();
-    }
-
-    updateStat(statValue, statName, statType) {
-        this.stats.updateStat(statValue, statName, statType);
+        this.score = 0;
     }
 }
 

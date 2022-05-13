@@ -1,7 +1,8 @@
-class ScoreStat {
-    constructor( madeShots = 0, totalShots = 0) {
+class ScoreStat  {
+    constructor( madeShots = 0, attempts = 0) {
         this.made = madeShots;
-        this.total = totalShots;
+        this.missed = 0;
+        this.total = this.made + this.missed;
     }
 
     addMadeShot() {
@@ -11,6 +12,21 @@ class ScoreStat {
 
     addMissedShot() {
         this.total++;
+    }
+
+    setMade( shots ) {
+        this.made = parseInt(shots);
+        this.updateTotal();
+    }
+
+    setMissed( missed ) {
+        this.missed = parseInt(missed);
+        this.updateTotal();
+    }
+
+    updateTotal() {
+        console.log(this.missed);
+        this.total = this.made + this.missed;
     }
 
     getPercentage() {

@@ -13,3 +13,7 @@
 .btn--danger {
     @apply bg-red-500 hover:bg-red-700;
 }
+
+.table .form-control {
+    max-width: 100px;
+}

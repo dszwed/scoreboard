@@ -6,3 +6,11 @@
 
 }
 
+.scoreboard {
+    @apply grid-cols-2;
+    display: grid;
+}
+
+.input {
+    width: 50px;
+}

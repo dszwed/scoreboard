@@ -1,8 +1,6 @@
-import {PrismaClient} from "@prisma/client";
-const prisma = new PrismaClient();
+import { teams } from "../../data";
 
-export default async function handler(req, res) {
-    const teams = await prisma.team.findMany();
-
-    res.status(200).json(teams);
+export default function handler(req, res) {
+    console.log(teams);
+    res.status(200);
 }

@@ -1,5 +1,7 @@
 import {Component} from "react";
 import Formatter from "./formatter";
+import Stat from "./stat";
+import PlayerStats from "./playerStats";
 const formatter = new Intl.NumberFormat('pl-PL', { maximumSignificantDigits: 2 });
 
 class PlayerStatsPanel extends Component {
@@ -19,115 +21,45 @@ class PlayerStatsPanel extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <table class="table-auto">
-                        <tbody>
-                        {this.props.players.map((player, i) => {
-                            // Return the element. Also pass key
-                            return (<tr key={player.id}>
-                                <td>
-                                    {player.number} {player.name}
-                                </td>
-                                <td>
-                                    <button className="btn btn--success" onClick={() => {
-                                        this.updateStat(player, 1, 'free-throw', 'points')
-                                    }}>
-                                        FT
-                                    </button>
-                                    <button className="btn btn--success" onClick={() => {
-                                        this.updateStat(player, 1, '2points', 'points')
-                                    }}>
-                                        +1
-                                    </button>
-                                    <button className="btn btn--success" onClick={() => {
-                                        this.updateStat(player, 2, '3points', 'points')
-                                    }}>
-                                        +2
-                                    </button>
-                                    <button className="btn btn--danger" onClick={() => {
-                                        this.updateStat(player, 0, 'free-throw', 'points')
-                                    }}>
-                                        FT
-                                    </button>
-                                    <button className="btn btn--danger" onClick={() => {
-                                        this.updateStat(player, 0, '2points', 'points')
-                                    }}>
-                                        +1
-                                    </button>
-                                    <button className="btn btn--danger" onClick={() => {
-                                        this.updateStat(player, 0, '3points', 'points')
-                                    }}>
-                                        +2
-                                    </button>
-                                </td>
-                            </tr>)
-                        })}
-                        </tbody>
-                    </table>
-                </div>
-                <div>
-                    <table className="table-fixed">
-                        <thead>
+                    <table className="table table-compact">
+                        <thead className="text-center">
                         <tr>
-                            <th class="border border-slate-500">
+                            <th className="">
                                 Player
                             </th>
-                            <th class="border border-slate-500">
+                            <th className="">
                                 Points
                             </th>
-                            <th>
+                            <th colSpan={3}>
                                 3PTS
                             </th>
-                            <th>
-                                3PTS%
-                            </th>
-                            <th>
+                            <th colSpan={3}>
                                 2PTS
                             </th>
-                            <th>
-                                2PTS%
-                            </th>
-                            <th>
-                                FT
-                            </th>
-                            <th>
-                                FT%
-                            </th>
+                            {/*<th colSpan={3}>*/}
+                            {/*    FT*/}
+                            {/*</th>*/}
+                        </tr>
+                        <tr>
+                            <th colSpan={2}></th>
+                            <th>M</th>
+                            <th>A</th>
+                            <th>%</th>
+                            <th>M</th>
+                            <th>A</th>
+                            <th>%</th>
+                            {/*<th>M</th>*/}
+                            {/*<th>A</th>*/}
+                            {/*<th></th>*/}
                         </tr>
                         </thead>
                         <tbody>
                         {this.props.players.map((player, i) => {
                             // Return the element. Also pass key
-                            return (<tr key={player.id}>
-                                <td>
-                                    {player.number} {player.name}
-                                </td>
-                                <td>
-                                    {player.stats.getStat('points')}
-                                </td>
-                                <td>
-                                    {player.stats.getStat('score3')}
-                                </td>
-                                <td>
-                                    <Formatter number={player.stats.getStatPercentage('score3')} />
-                                </td>
-                                <td>
-                                    {player.stats.getStat('score2')}
-                                </td>
-                                <td>
-                                    {player.stats.getStatPercentage('score2')}
-                                </td>
-                                <td>
-                                    {player.stats.getStat('free-throw')}
-                                </td>
-                                <td>
-                                    {player.stats.getStatPercentage('free-throw')}
-                                </td>
-                            </tr>)
+                            return (<PlayerStats player={player} key={player.id} onScore={this.props.onScore} />)
                         })}
                         </tbody>
                     </table>
-                </div>
             </div>
         )
     }
