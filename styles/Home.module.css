@@ -6,9 +6,11 @@
 
 }
 
-.scoreboard {
-    @apply grid-cols-2;
-    display: grid;
+@screen 2xl {
+    .scoreboard {
+        @apply grid-cols-2;
+        display: grid;
+    }
 }
 
 .input {
