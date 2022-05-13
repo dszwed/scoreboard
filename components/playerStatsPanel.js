@@ -31,10 +31,10 @@ class PlayerStatsPanel extends Component {
                                 Points
                             </th>
                             <th colSpan={3}>
-                                3PTS
+                                2PTS
                             </th>
                             <th colSpan={3}>
-                                2PTS
+                                1PTS
                             </th>
                             {/*<th colSpan={3}>*/}
                             {/*    FT*/}
