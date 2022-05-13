@@ -23,6 +23,7 @@ class PlayerStatsPanel extends Component {
             <div>
                     <table className="table table-compact">
                         <thead className="text-center">
+
                         <tr>
                             <th className="">
                                 Player
@@ -30,24 +31,12 @@ class PlayerStatsPanel extends Component {
                             <th className="">
                                 Points
                             </th>
-                            <th colSpan={3}>
-                                2PTS
-                            </th>
-                            <th colSpan={3}>
-                                1PTS
-                            </th>
-                            {/*<th colSpan={3}>*/}
-                            {/*    FT*/}
-                            {/*</th>*/}
-                        </tr>
-                        <tr>
-                            <th colSpan={2}></th>
-                            <th>M</th>
-                            <th>A</th>
-                            <th>%</th>
-                            <th>M</th>
-                            <th>A</th>
-                            <th>%</th>
+                            <th>2PM</th>
+                            <th>2PA</th>
+                            <th>2P%</th>
+                            <th>1PM</th>
+                            <th>1PA</th>
+                            <th>1P%</th>
                             {/*<th>M</th>*/}
                             {/*<th>A</th>*/}
                             {/*<th></th>*/}
