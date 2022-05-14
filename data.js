@@ -18,10 +18,10 @@ export const teams = [
         name: 'Jorgusie',
         score: '0',
         players: [
-            new Player(2, 'Kudłaty', 6),
+            new Player(2, 'Maciej Szczepańczyk', 6),
             new Player(31, 'Kamil Jabłoński', 9),
             new Player(32, 'Bartek Jabłoński', 69),
-            new Player(33, 'Marek', 96),
+            new Player(33, 'Marek Olearczyk', 96),
         ]
     },
     {
@@ -32,7 +32,8 @@ export const teams = [
             new Player(10, 'Bogusz Siemek', 1),
             new Player(25, 'Wojtek Cetnarski', 14),
             new Player(26, 'Tomasz Karcz', 4),
-            new Player(27, 'Tomasz Karcz', 0),
+            new Player(27, 'Korneliusz Siemek', 0),
+            new Player(34, 'Szymon Bratus', 0),
         ]
     },
     {
