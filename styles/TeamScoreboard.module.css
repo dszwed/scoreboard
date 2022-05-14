@@ -1,12 +1,12 @@
 .board {
-    background: black;
-    color: red;
-    font-size: 5vh;
+    min-width: 300px;
 }
 
-.team-scoreboard {
-    display: block;
+.teamScoreboard {
+    display: flex;
+    width: 100%;
 }
+
 
 .stats-table {
 

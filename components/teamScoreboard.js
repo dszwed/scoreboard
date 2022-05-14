@@ -26,8 +26,11 @@ class TeamScoreboard extends Component {
 
     render() {
         return (
-            <div className="">
-                <div className={styles.board}>{this.props.teamName}: {this.state.score}</div>
+            <div className={styles.teamScoreboard}>
+                <div className="stat place-items-center">
+                    <div className="stat-title">{this.props.teamName}</div>
+                    <div className="stat-value">{this.state.score}</div>
+                </div>
                 <PlayerStatsPanel players={this.props.players} onScore={this.handleUpdateScoreBy} />
             </div>
         )
